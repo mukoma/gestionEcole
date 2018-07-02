@@ -56,25 +56,29 @@ public class Fenetre extends JFrame implements ActionListener {
 	    menuBar.setBounds(0, 0,1300, 30);
 	    
 	    
-	    EleveMa elma = new EleveMa();
-	    
-	    
-	    Vector<String>colonne = new Vector<>();
-	    colonne.add("nom");
-	    colonne.add("postnom");
-	    colonne.add("postnom");
-	    
-	    tableEleves = new JTable(elma.findAllVector(),colonne);  
-	    TableColumnModel columnModel = tableEleves.getColumnModel();
-	    
-	    columnModel.getColumn(0).setWidth(100);
-	    columnModel.getColumn(1).setPreferredWidth(150);
+	    updateTEst();
 	  
 	    
 	   
 	    
 	    this.getContentPane().add(tableEleves);
 	    tableEleves.setBounds(70, 70, 800, 400);
+	}
+	public void updateTEst() throws SQLException{
+		
+		 EleveMa elma = new EleveMa();
+		    
+		    
+		    Vector<String>colonne = new Vector<>();
+		    colonne.add("nom");
+		    colonne.add("postnom");
+		    colonne.add("postnom");
+		    
+		    tableEleves = new JTable(elma.findAllVector(),colonne);  
+		    TableColumnModel columnModel = tableEleves.getColumnModel();
+		   // tableEleves.setd
+		    columnModel.getColumn(0).setWidth(100);
+		    columnModel.getColumn(1).setPreferredWidth(150);
 	}
 	
 	private TableModel getTableModelEleve() {
@@ -89,6 +93,12 @@ public class Fenetre extends JFrame implements ActionListener {
 		//System.out.println("okk");
 		FenAJoutEl fenAJoutEl = new FenAJoutEl();
 		fenAJoutEl.setVisible(true);
+		try {
+			fenAJoutEl.close(this);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 	}
 }
